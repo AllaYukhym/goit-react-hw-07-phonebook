@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 import { addContact } from 'redux/operations';
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
@@ -23,7 +23,7 @@ const initialValues = {
 };
 
 export const Form = () => {
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const onSubmit = contact => {

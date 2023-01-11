@@ -1,22 +1,17 @@
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { getContacts, getFilter } from 'redux/selectors.js';
+import {
+  selectContacts,
+  selectFilter,
+  selectVisibleContacts,
+} from 'redux/selectors.js';
 import { ContactListItem } from '../ContactListItem/ContactListItem.jsx';
 import { List } from './ContactList.styled.js';
 
 export const ContactList = () => {
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
-
-  const getFilteredContacts = () => {
-    const normalizedFilter = filter.toLowerCase();
-
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter)
-    );
-  };
-
-  const visibleContacts = getFilteredContacts();
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
+  const visibleContacts = useSelector(selectVisibleContacts);
 
   return (
     <List>
