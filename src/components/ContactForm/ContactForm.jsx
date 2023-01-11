@@ -1,7 +1,7 @@
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from 'redux/selectors';
-import { addContact } from 'redux/contactsSlice';
-import PropTypes from 'prop-types';
+import { addContact } from 'redux/operations';
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import {
@@ -26,13 +26,7 @@ export const Form = () => {
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
 
-  const onSubmit = data => {
-    const { name, number } = data;
-    const contact = {
-      name,
-      number,
-    };
-
+  const onSubmit = contact => {
     dispatch(addContact(contact));
   };
 
